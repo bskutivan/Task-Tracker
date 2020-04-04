@@ -81,6 +81,14 @@ var completeEditTask = function(taskName, taskType, taskId) {
     taskSelected.querySelector("h3.task-name").textContent = taskName;
     taskSelected.querySelector("span.task-type").textContent = taskType;
 
+    // loop throguh tasks array and task object with new content
+    for (var i = 0; i < tasks.length; i ++) {
+        if (tasks[i].id === parseInt(taskId)) {
+            tasks[i].name = taskName;
+            tasks[i].type = taskType;
+        }
+    };
+
     alert("Task Updated!");
     
     // reset form
@@ -181,6 +189,14 @@ var taskStatusChangeHandler = function(event) {
     else if (statusValue === "completed") {
         tasksCompletedE1.appendChild(taskSelected);
     }
+
+    // update task's in tasks array
+    for (var i = 0; i < tasks.length; i++) {
+        if (tasks[i].id === parseInt(taskId)) {
+            tasks[i].status = statusValue;
+        }
+    }
+    console.log(tasks);
 };
 
 var dragTaskHandler = function(event) {
@@ -216,6 +232,14 @@ var dropTaskHandler = function(event) {
     }
     dropZoneE1.removeAttribute("style");
     dropZoneE1.appendChild(draggableElement);
+
+    for (var i = 0; i < tasks.length; i++) {
+        if (tasks[i].id === parseInt(id)) {
+            tasks[i].status = statusSelectE1.value.toLowerCase();
+        }
+    }
+
+    console.log(tasks);
 };
 
 var dragLeaveHandler = function(event) {
