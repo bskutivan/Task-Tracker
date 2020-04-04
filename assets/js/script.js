@@ -168,6 +168,18 @@ var editTask = function(taskId) {
 var deleteTask = function(taskId) {
     var taskSelected = document.querySelector(".task-item[data-task-id='" + taskId + "']");
     taskSelected.remove();
+
+    var updatedTaskArr = [];
+
+    // loop through current tasks
+    for (var i = 0; i < tasks.length; i++)  {
+        //if tasks[i].id doesn't match the value of taskId, lets keep that task and push it into the new array
+        if (tasks[i].id !=== parseInt(taskId)) {
+            updatedTaskArr.push(tasks[i]);
+        }
+    }
+
+    tasks = updatedTaskArr;
 };
 
 var taskStatusChangeHandler = function(event) {
