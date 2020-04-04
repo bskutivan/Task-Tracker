@@ -6,6 +6,8 @@ var pageContentE1 = document.querySelector("#page-content");
 var tasksInProgressE1 = document.querySelector("#tasks-in-progress");
 var tasksCompletedE1 = document.querySelector("#tasks-completed");
 
+var tasks = [];
+
 var createTaskE1 = function(taskDataObj) {
     var listItemE1 = document.createElement("li");
     listItemE1.className = "task-item";
@@ -18,6 +20,9 @@ var createTaskE1 = function(taskDataObj) {
 
     
     listItemE1.appendChild(taskInfoE1);
+
+    taskDataObj.id = taskIdCounter;
+    tasks.push(taskDataObj);
 
     var taskActionsE1 = createTaskActions(taskIdCounter);
     listItemE1.appendChild(taskActionsE1);
@@ -101,14 +106,17 @@ var taskFormHandler = function(event) {
         completeEditTask(taskNameInput, taskTypeInput, taskId);
     }
     else {
-        // package u data as an object
+        // package up data as an object
         var taskDataObj = {
             name: taskNameInput,
-            type: taskTypeInput
+            type: taskTypeInput,
+            status: "to do"
         };
 
         // send it as an argument to createTaskE1
         createTaskE1(taskDataObj);
+        console.log(taskDataObj);
+        console.log(taskDataObj.status);
     }
 };
 
